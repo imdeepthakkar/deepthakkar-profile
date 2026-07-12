@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/profile',
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "ui-avatars.com" },
