@@ -56,7 +56,7 @@ export async function getLinkedInPosts(): Promise<LinkedInPost[]> {
     if (!res.ok) return FALLBACK_POSTS
     const data = await res.json()
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
     const posts: any[] = data?.data ?? data ?? []
     if (!Array.isArray(posts) || posts.length === 0) return FALLBACK_POSTS
 

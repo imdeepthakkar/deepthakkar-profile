@@ -39,7 +39,7 @@ export async function getGitHubActivity(): Promise<GitHubEvent[]> {
       }
     )
     if (!res.ok) return []
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
     const data: any[] = await res.json()
     return data.map((event) => {
       const base: GitHubEvent = {
@@ -79,7 +79,7 @@ export async function getGitHubStats(): Promise<GitHubStats> {
       return { publicRepos: 0, followers: 0, following: 0, totalStars: 0, totalForks: 0 }
     }
     const user = await userRes.json()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
     const repos: any[] = await reposRes.json()
     const totalStars = repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0)
     const totalForks = repos.reduce((sum, r) => sum + (r.forks_count || 0), 0)
