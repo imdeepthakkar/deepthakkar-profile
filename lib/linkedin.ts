@@ -44,11 +44,11 @@ export async function getLinkedInPosts(): Promise<LinkedInPost[]> {
 
   try {
     const res = await fetch(
-      `https://linkedin-api8.p.rapidapi.com/get-profile-posts?username=${LINKEDIN_USERNAME}`,
+      `https://fresh-linkedin-profile-data.p.rapidapi.com/get-profile-posts?linkedin_url=https://www.linkedin.com/in/${LINKEDIN_USERNAME}&type=posts`,
       {
         headers: {
           "X-RapidAPI-Key": apiKey,
-          "X-RapidAPI-Host": "linkedin-api8.p.rapidapi.com",
+          "X-RapidAPI-Host": "fresh-linkedin-profile-data.p.rapidapi.com",
         },
         next: { revalidate: 3600 },
       }
@@ -56,17 +56,19 @@ export async function getLinkedInPosts(): Promise<LinkedInPost[]> {
     if (!res.ok) return FALLBACK_POSTS
     const data = await res.json()
 
+    // Handle nested data.posts structure, fallback to root array
     // eslint-disable-next-line
-    const posts: any[] = data?.data ?? data ?? []
-    if (!Array.isArray(posts) || posts.length === 0) return FALLBACK_POSTS
+    const postsData: any[] = data?.data?.posts ?? data?.data ?? data?.posts ?? data ?? []
+    if (!Array.isArray(postsData) || postsData.length === 0) return FALLBACK_POSTS
 
-    return posts.slice(0, 6).map((post, i) => ({
-      id: post.urn ?? String(i),
-      text: post.commentary?.text ?? post.text ?? "",
-      date: post.postedAt ?? new Date().toISOString(),
-      url: post.postUrl ?? `https://linkedin.com/in/${LINKEDIN_USERNAME}`,
-      likes: post.socialDetail?.totalSocialActivityCounts?.numLikes ?? 0,
-      comments: post.socialDetail?.totalSocialActivityCounts?.numComments ?? 0,
+    // eslint-disable-next-line
+    return postsData.slice(0, 6).map((post: any, i: number) => ({
+      id: post.post_id ?? post.urn ?? String(i),
+      text: post.content ?? post.text ?? post.commentary?.text ?? "",
+      date: post.posted_date ?? post.postedAt ?? new Date().toISOString(),
+      url: post.url ?? post.postUrl ?? `https://linkedin.com/in/${LINKEDIN_USERNAME}`,
+      likes: post.likes_count ?? post.socialDetail?.totalSocialActivityCounts?.numLikes ?? 0,
+      comments: post.comments_count ?? post.socialDetail?.totalSocialActivityCounts?.numComments ?? 0,
     }))
   } catch {
     return FALLBACK_POSTS
