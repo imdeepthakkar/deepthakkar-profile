@@ -1,32 +1,180 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --primary: #6366f1;
+    --secondary: #e2e8f0;
+    --accent: #8B5CF6;
+    --muted-foreground: #64748b;
+    --border: rgba(226, 232, 240, 0.6);
+  }
+
+  .dark {
+    --background: #080C14;
+    --foreground: #f1f5f9;
+    --primary: #6366f1;
+    --secondary: #1e2030;
+    --accent: #8B5CF6;
+    --muted-foreground: #94a3b8;
+    --border: rgba(255, 255, 255, 0.1);
+  }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-navy-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+
   * {
-    @apply box-border border-slate-200/50 dark:border-white/10;
+    box-sizing: border-box;
   }
 }
 
 @layer utilities {
+  /* Glass morphism */
   .glass {
-    @apply bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/50 dark:border-white/10 shadow-sm dark:shadow-none;
+    @apply bg-white/60 backdrop-blur-md border border-slate-200/60 shadow-sm;
   }
+  .dark .glass {
+    @apply bg-white/5 backdrop-blur-md border-white/10 shadow-none;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+  }
+  .dark .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Fixed navbar glass */
   .glass-nav {
-    @apply bg-white/70 dark:bg-black/30 backdrop-blur-xl border-b border-slate-200/50 dark:border-white/10 shadow-sm dark:shadow-none;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
+  .dark .glass-nav {
+    background: rgba(8, 12, 20, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+
+  /* Gradient text */
   .gradient-text {
-    @apply bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, #6366f1, #8B5CF6, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
+
+  /* Noise background overlay */
+  .noise-bg {
+    position: relative;
+  }
+  .noise-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+
+  /* Spinning gradient ring for avatar */
+  .animate-gradient-spin {
+    background-size: 200% 200%;
+    animation: gradient-spin 4s linear infinite;
+  }
+
+  /* Box glow effect */
+  .box-glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(99, 102, 241, 0.1);
+  }
+
+  /* 3D card transform */
+  .hero-3d-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  /* Bento card (legacy support) */
   .bento-card {
-    @apply glass rounded-2xl p-6 transition-all duration-300;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .dark .bento-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Section card */
+  .section-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    border-radius: 1.5rem;
+  }
+  .dark .section-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Item cards within sections */
+  .item-card {
+    background: rgba(241, 245, 249, 0.7);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+  .dark .item-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .item-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    background: rgba(99, 102, 241, 0.05);
+  }
+
+  /* Pulse badge animation */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
+  }
+  .animate-pulse-dot {
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  /* Scroll indicator bounce */
+  @keyframes bounce-scroll {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  .animate-bounce-scroll {
+    animation: bounce-scroll 1.5s ease-in-out infinite;
   }
 }

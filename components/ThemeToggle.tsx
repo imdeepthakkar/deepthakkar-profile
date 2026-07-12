@@ -25,12 +25,22 @@ export function ThemeToggle() {
 
   return (
     <motion.button
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.05 }}
       onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="p-2 rounded-xl glass text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
+      className="p-2 rounded-xl border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
+      style={{
+        borderColor: 'var(--border)',
+        background: 'rgba(99,102,241,0.06)',
+        color: 'var(--muted-foreground)',
+      }}
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      {isDark ? (
+        <Sun size={16} className="text-amber-400" />
+      ) : (
+        <Moon size={16} style={{ color: 'var(--primary)' }} />
+      )}
     </motion.button>
   )
 }

@@ -1,9 +1,10 @@
-import { BentoGrid } from "@/components/BentoGrid"
 import { Hero } from "@/components/Hero"
+import { StatsSection } from "@/components/StatsSection"
 import { GitHubActivity } from "@/components/GitHubActivity"
 import { LinkedInPosts } from "@/components/LinkedInPosts"
 import { BlogArticles } from "@/components/BlogArticles"
 import { ProjectMetrics } from "@/components/ProjectMetrics"
+import { Footer } from "@/components/Footer"
 import { getGitHubActivity, getGitHubStats } from "@/lib/github"
 import { getLinkedInPosts } from "@/lib/linkedin"
 import { getBlogArticles } from "@/lib/blog"
@@ -24,14 +25,16 @@ export default async function HomePage() {
   const combinedMetrics = { github: githubStats, analytics }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <BentoGrid>
+    <div className="min-h-screen flex flex-col noise-bg">
+      <main className="flex-1 pt-16">
         <Hero />
+        <StatsSection />
         <GitHubActivity events={githubEvents} />
         <LinkedInPosts posts={linkedinPosts} />
         <BlogArticles articles={blogArticles} />
         <ProjectMetrics metrics={combinedMetrics} />
-      </BentoGrid>
+        <Footer />
+      </main>
     </div>
   )
 }

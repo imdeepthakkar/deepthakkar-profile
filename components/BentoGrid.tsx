@@ -1,7 +1,5 @@
-export function BentoGrid({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-auto">
-      {children}
-    </div>
-  )
+// BentoGrid is no longer used — layout has moved to full-width sections.
+// Kept as an empty export to avoid any stale imports breaking the build.
+export function BentoGrid({ children }: { children?: React.ReactNode }) {
+  return <>{children}</>
 }

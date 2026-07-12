@@ -1,16 +1,29 @@
 import type { Metadata } from "next"
+import { Inter, Outfit } from "next/font/google"
 import "./globals.css"
 import { Nav } from "@/components/Nav"
 import { ScrollProgress } from "@/components/ScrollProgress"
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+})
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+})
+
 export const metadata: Metadata = {
-  title: "Deep Thakkar — Developer Portfolio",
+  title: "Deep Thakkar — Full-Stack Developer & AI Engineer",
   description:
-    "Full-stack developer portfolio featuring live GitHub activity, LinkedIn posts, blog articles, and real-time project metrics.",
-  keywords: ["developer", "portfolio", "Next.js", "TypeScript", "full-stack"],
+    "Full-stack developer passionate about AI, developer tooling, and creating software that makes a real difference. 3+ years of experience building scalable products.",
+  keywords: ["developer", "portfolio", "Next.js", "TypeScript", "full-stack", "AI", "ML"],
   authors: [{ name: "Deep Thakkar", url: "https://github.com/imdeepthakkar" }],
   openGraph: {
-    title: "Deep Thakkar — Developer Portfolio",
+    title: "Deep Thakkar — Full-Stack Developer & AI Engineer",
     description: "Full-stack developer portfolio with live data integrations.",
     type: "website",
   },
@@ -18,24 +31,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                const theme = localStorage.getItem('theme') || 'dark';
-                if (theme === 'dark') {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                  } else {
+                    // Default to dark mode
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch(e) {
                   document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
                 }
               })()
             `,
           }}
         />
       </head>
-      <body className="min-h-screen bg-slate-50 dark:bg-navy-900 transition-colors duration-300">
+      <body
+        className={`${inter.variable} ${outfit.variable} font-sans min-h-screen transition-colors duration-300`}
+        style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}
+      >
         <ScrollProgress />
         <Nav />
         {children}
