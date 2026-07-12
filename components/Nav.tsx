@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { Mail } from "lucide-react"
 import { Github, Linkedin } from "@/components/icons"
+import { ThemeToggle } from "@/components/ThemeToggle"
 import { motion } from "framer-motion"
 
 const navLinks = [
@@ -40,7 +41,7 @@ export function Nav() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-slate-400 hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded px-2 py-1"
+                  className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded px-2 py-1"
                 >
                   {link.label}
                 </Link>
@@ -53,7 +54,7 @@ export function Nav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub profile"
-                className="p-2 text-slate-400 hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
+                className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
               >
                 <Github size={18} />
               </a>
@@ -62,17 +63,19 @@ export function Nav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn profile"
-                className="p-2 text-slate-400 hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
+                className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
               >
                 <Linkedin size={18} />
               </a>
               <a
                 href="mailto:deep@example.com"
                 aria-label="Email me"
-                className="p-2 text-slate-400 hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
+                className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
               >
                 <Mail size={18} />
               </a>
+              <div className="w-[1px] h-6 bg-slate-200 dark:bg-white/10 mx-1" aria-hidden />
+              <ThemeToggle />
             </div>
           </motion.div>
         </div>

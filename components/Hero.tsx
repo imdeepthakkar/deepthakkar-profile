@@ -30,13 +30,13 @@ export function Hero() {
       {/* Content */}
       <div className="flex flex-col gap-4 flex-1">
         <motion.div variants={fadeInUp}>
-          <p className="text-sm text-slate-500 mb-1 font-medium">👋 Hello, I&apos;m</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-1 font-medium">👋 Hello, I&apos;m</p>
           <h1 className="font-heading text-4xl lg:text-5xl font-bold gradient-text leading-tight">
             {SITE_OWNER.name}
           </h1>
         </motion.div>
 
-        <motion.p variants={fadeInUp} className="text-slate-300 text-lg leading-relaxed max-w-xl">
+        <motion.p variants={fadeInUp} className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed max-w-xl">
           {SITE_OWNER.bio}
         </motion.p>
 
@@ -45,7 +45,7 @@ export function Hero() {
           {SKILLS.map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-xs font-medium rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20"
+              className="px-3 py-1 text-xs font-medium rounded-full bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20"
             >
               {skill}
             </span>
@@ -58,7 +58,7 @@ export function Hero() {
             href={SITE_OWNER.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-xl transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:outline-none"
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-xl transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:outline-none shadow-md shadow-indigo-500/15 dark:shadow-none"
           >
             <Github size={16} />
             GitHub
@@ -67,14 +67,14 @@ export function Hero() {
             href={SITE_OWNER.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 glass text-slate-300 hover:text-white text-sm font-medium rounded-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:outline-none"
+            className="flex items-center gap-2 px-4 py-2 glass text-slate-700 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-white/10 hover:text-slate-950 dark:hover:text-white text-sm font-medium rounded-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:outline-none"
           >
             <Linkedin size={16} />
             LinkedIn
           </a>
           <a
             href={`mailto:${SITE_OWNER.email}`}
-            className="flex items-center gap-2 px-4 py-2 glass text-slate-300 hover:text-white text-sm font-medium rounded-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:outline-none"
+            className="flex items-center gap-2 px-4 py-2 glass text-slate-700 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-white/10 hover:text-slate-950 dark:hover:text-white text-sm font-medium rounded-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:outline-none"
           >
             <Mail size={16} />
             Contact

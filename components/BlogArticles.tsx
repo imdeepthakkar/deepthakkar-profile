@@ -28,12 +28,12 @@ export function BlogArticles({ articles }: Props) {
       className="bento-card col-span-1 md:col-span-2"
     >
       <div className="flex items-center justify-between mb-5">
-        <h2 className="font-heading text-xl font-bold text-slate-100">
+        <h2 className="font-heading text-xl font-bold text-slate-900 dark:text-slate-100">
           ✍️ Recent Articles
         </h2>
         <a
           href="#"
-          className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded"
+          className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded font-medium"
         >
           View all →
         </a>
@@ -50,7 +50,7 @@ export function BlogArticles({ articles }: Props) {
             href={article.url}
             variants={fadeInUp}
             whileHover={cardHover}
-            className="block p-4 rounded-xl bg-white/5 hover:bg-white/8 border border-white/10 hover:border-indigo-500/30 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none group"
+            className="block p-4 rounded-xl bg-slate-100/50 dark:bg-white/5 hover:bg-slate-200/50 dark:hover:bg-white/8 border border-slate-200/50 dark:border-white/10 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none group"
             aria-label={`Read article: ${article.title}`}
           >
             {/* Tags */}
@@ -58,20 +58,20 @@ export function BlogArticles({ articles }: Props) {
               {article.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20"
+                  className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-            <h3 className="text-sm font-semibold text-slate-100 leading-snug mb-2 group-hover:text-indigo-300 transition-colors line-clamp-2">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 leading-snug mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors line-clamp-2">
               {article.title}
             </h3>
-            <p className="text-xs text-slate-500 leading-relaxed mb-3 line-clamp-2">
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-3 line-clamp-2">
               {article.excerpt}
             </p>
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 text-xs text-slate-600">
+              <div className="flex items-center gap-3 text-xs text-slate-400 dark:text-slate-600">
                 <time dateTime={article.date}>{formatDate(article.date)}</time>
                 <span className="flex items-center gap-1">
                   <Clock size={10} />
@@ -80,7 +80,7 @@ export function BlogArticles({ articles }: Props) {
               </div>
               <ArrowUpRight
                 size={14}
-                className="text-slate-600 group-hover:text-indigo-400 transition-colors"
+                className="text-slate-400 dark:text-slate-600 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
                 aria-hidden
               />
             </div>

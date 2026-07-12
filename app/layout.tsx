@@ -18,8 +18,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen bg-navy-900">
+    <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const theme = localStorage.getItem('theme') || 'dark';
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              })()
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-screen bg-slate-50 dark:bg-navy-900 transition-colors duration-300">
         <ScrollProgress />
         <Nav />
         {children}

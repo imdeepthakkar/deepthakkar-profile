@@ -9,22 +9,22 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-navy-900 text-slate-100 font-sans antialiased;
+    @apply bg-slate-50 text-slate-900 dark:bg-navy-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300;
   }
   * {
-    @apply box-border;
+    @apply box-border border-slate-200/50 dark:border-white/10;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/50 dark:border-white/10 shadow-sm dark:shadow-none;
   }
   .glass-nav {
-    @apply bg-black/30 backdrop-blur-xl border-b border-white/10;
+    @apply bg-white/70 dark:bg-black/30 backdrop-blur-xl border-b border-slate-200/50 dark:border-white/10 shadow-sm dark:shadow-none;
   }
   .gradient-text {
-    @apply bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400 bg-clip-text text-transparent;
   }
   .bento-card {
     @apply glass rounded-2xl p-6 transition-all duration-300;
